@@ -5,7 +5,6 @@ import ExpenseFilters from "./ExpenseFilters";
 import ExpenseChart from "./ExpenseChart";
 import MonthlyExpenseChart from "./MonthlyExpenseChart";
 import BudgetSetter from "./BudgetSetter";
-import ExportCSV from './ExportCSV'
 
 const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState([]);
@@ -99,8 +98,6 @@ const ExpenseTracker = () => {
       <ExpenseChart expenses={filteredExpenses} />
       <MonthlyExpenseChart expenses={filteredExpenses} />
       <ExpenseList expenses={filteredExpenses} onDelete={deleteExpense} onEdit={editExpense} />
-      {/* Export CSV Button */}
-      <ExportCSV expenses={expenses} />
     </div>
   );
 };

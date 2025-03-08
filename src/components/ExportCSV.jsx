@@ -4,29 +4,22 @@ import React from "react";
 const ExportCSV = ({ expenses }) => {
   const handleExport = () => {
     if (expenses.length === 0) {
-      alert("No data to export!");
+      alert("⚠️ No data to export!");
       return;
     }
 
-    // Define CSV headers
     const headers = ["Title,Amount,Category,Date"];
-    
-    // Format expense data
     const rows = expenses.map((expense) =>
       `${expense.title},${expense.amount},${expense.category},${expense.date}`
     );
-
-    // Combine headers and rows
     const csvContent = [headers, ...rows].join("\n");
 
-    // Get current date for filename
-    const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+    const currentDate = new Date().toISOString().split("T")[0];
     const fileName = `expenses_${currentDate}.csv`;
 
-    // Create Blob and download file
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    
+
     const link = document.createElement("a");
     link.href = url;
     link.setAttribute("download", fileName);
@@ -38,9 +31,9 @@ const ExportCSV = ({ expenses }) => {
   return (
     <button
       onClick={handleExport}
-      className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+      className="bg-white text-blue-600 font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-blue-100 transition duration-300"
     >
-      📥 Export to CSV
+      📥 Export Expenses
     </button>
   );
 };
