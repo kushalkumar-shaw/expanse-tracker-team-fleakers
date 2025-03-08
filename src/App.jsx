@@ -1,12 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import ExpenseTracker from "./components/ExpenseTracker";
 
-function App() {
+const App = () => {
+  const [expenses, setExpenses] = useState([]);
+
+  // Load saved expenses from localStorage
+  useEffect(() => {
+    const storedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    setExpenses(storedExpenses);
+  }, []);
+
   return (
-    <div>
-      <h1>Hello</h1>
+    <div className="min-h-screen bg-gray-100">
+      <Navbar expenses={expenses} />
+      <ExpenseTracker setExpenses={setExpenses} />
     </div>
   );
-}
+};
 
 export default App;
